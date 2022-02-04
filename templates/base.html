@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tails Downloaded File</title>
+    <link rel="stylesheet" href="{% static 'css/tailwind.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static '/js/alpine.min.js' %}" defer></script>
+    
+</head>
+<body>
+
+<div class="flex flex-col h-screen">
+<header class="py-5">
+        <!-- Section 1 header -->
+{% block header %}
+{% include 'partials/header.html' %}
+{% endblock %}
+</header>
+
+<main>
+    {% if messages %}
+  <div class="alert alert-dismissible" role="alert">
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+    {% block main %}
+    {% endblock  %}
+</main>
+
+<footer>
+     <!-- Sectiony 5 footer-->
+     {% block footer %}
+     {% include "partials/footer.html" %}
+     {% endblock %}
+</footer>
+</div>
+<!-- AlpineJS Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.0/alpine.js"></script>
+</body>
+</html>
